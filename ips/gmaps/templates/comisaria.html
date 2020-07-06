@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}Perú Seguro222{% endblock %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'gmaps/css/styles.css' %}">
+{% endblock %}
+
+{% block container %}
+	<h1>Mapas 222...</h1>
+	<div class="container">
+		<div class="capas" id="map">
+		</div>
+		<div class="capas" id="datos">
+		</div>
+	</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Initialize and add the map
+function initMap() {
+  // The location of Uluru
+  var uluru = {lat: -16.2227019, lng: -72.4730677};
+  // The map, centered at Uluru
+  var map = new google.maps.Map(
+      document.getElementById('map'), {zoom: 15, center: uluru});
+  // The marker, positioned at Uluru
+  var marker = new google.maps.Marker({position: uluru, map: map});
+}
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSbKN8LhXAYQLMC9U-zueMqnnY40JqSg4&callback=initMap">
+    </script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"> </script>
+<script src="{% static 'gmaps/js/scripts.js' %}"></script>-->
+{% endblock %}
+

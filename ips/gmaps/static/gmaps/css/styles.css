@@ -1,0 +1,27 @@
+.context{
+	background-color: #E6E6E6;
+}
+.container {
+	background-color: #fff;
+	box-shadow: 0 0 10px #000;
+	border-radius: 10px;
+	height: 400px;
+	margin: 0 auto;
+	padding: 5px;
+	text-align: center;
+	width: 900px;
+}
+
+.capas {
+	border: 1px solid #000;
+	display: inline-block;
+	height: 370px;
+	vertical-align: top;
+	width: 550px;
+}
+
+#map {
+        width: 50%;
+        height: 370px;
+        background-color: grey;
+}
