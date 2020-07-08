@@ -26,11 +26,11 @@ def importar(request):
         dataset = Dataset()
         # print(dataset)
         nuevas_personas = request.FILES['xlsfile']
-        print(nuevas_personas)
+        # print(nuevas_personas)
         imported_data = dataset.load(nuevas_personas.read())
-        print(dataset)
-        result = persona_resource.import_data(dataset, dry_run=True)  # Test the data import
-        # print(result.has_errors())
+        # print(dataset)
+        result = persona_resource.import_data(dataset, dry_run=True, raise_errors=True)  # Test the data import
+        print(result.has_errors())
         if not result.has_errors():
             persona_resource.import_data(dataset, dry_run=False)  # Actually import now
     return render(request, 'importar.html')

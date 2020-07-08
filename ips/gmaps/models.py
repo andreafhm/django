@@ -23,16 +23,16 @@ class UbicacionForm(ModelForm):
 
 
 class UbicacionComisaria(models.Model):
-    INEI = models.CharField(max_length=200)
-    CPNP = models.CharField(max_length=200)
-    NOMBREDD = models.CharField(max_length=200)
-    NOMBREPP = models.CharField(max_length=200)
-    NOMBREDI = models.CharField(max_length=200)
-    GPS = models.CharField(max_length=200)
-    MACREGPOL = models.CharField(max_length=200)
-    REGPOL = models.CharField(max_length=200)
-    DIVPOL = models.CharField(max_length=200)
-    COMISARIA = models.CharField(max_length=200)
-    TIPO = models.CharField(max_length=200)
+    INEI = models.CharField(max_length=200, null=True, blank=True)
+    CPNP = models.CharField(max_length=200, null=True, blank=True)
+    NOMBREDD = models.CharField(max_length=200, null=True, blank=True)
+    NOMBREPP = models.CharField(max_length=200, null=True, blank=True)
+    NOMBREDI = models.CharField(max_length=200, null=True, blank=True)
+    GPS = models.CharField(max_length=200, null=True, blank=True)
+    MACREGPOL = models.CharField(max_length=200, null=True, blank=True)
+    REGPOL = models.CharField(max_length=200, null=True, blank=True)
+    DIVPOL = models.CharField(max_length=200, null=True, blank=True)
+    COMISARIA = models.CharField(max_length=200, null=True, blank=True)
+    TIPO = models.CharField(max_length=200, null=True, blank=True)
 
 # Create your models here.
