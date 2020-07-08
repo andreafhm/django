@@ -21,7 +21,7 @@ from django.conf.urls import include
 from django.urls import path
 
 urlpatterns = [
-	path('gmaps/', include('gmaps.urls')),
+    path('gmaps/', include('gmaps.urls')),
     path('admin/', admin.site.urls),
-    
-] 
+
+]
