@@ -21,4 +21,18 @@ class UbicacionForm(ModelForm):
         model = Ubicacion
         fields = "__all__"
 
+
+class UbicacionComisaria(models.Model):
+    INEI = models.CharField(max_length=200)
+    CPNP = models.CharField(max_length=200)
+    NOMBREDD = models.CharField(max_length=200)
+    NOMBREPP = models.CharField(max_length=200)
+    NOMBREDI = models.CharField(max_length=200)
+    GPS = models.CharField(max_length=200)
+    MACREGPOL = models.CharField(max_length=200)
+    REGPOL = models.CharField(max_length=200)
+    DIVPOL = models.CharField(max_length=200)
+    COMISARIA = models.CharField(max_length=200)
+    TIPO = models.CharField(max_length=200)
+
 # Create your models here.
