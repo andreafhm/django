@@ -1,18 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Perú Seguro - Comisarias{% endblock %}
 
-{% block contenido %}
-    <form method="post" enctype="multipart/form-data">
+{% block container %}
+    <!--<form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <input type="file" name="xlsfile">
         <button type="submit">Subir</button>
-    </form>
-{% endblock %}
+    </form>-->
 
-</body>
-</html>
+    <div class="container">
+        <h2>Cargar Comisarias</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="xlsfile">Seleccionar Archivo:*</label>
+                <input type="file" class="form-control" id="xlsfile" name="xlsfile">
+            </div>
+            <button type="submit" class="btn btn-primary">Subir</button>
+        </form>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+{% endblock %}

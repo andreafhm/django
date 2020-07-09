@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from tablib import Dataset
-
 from .resources import PersonaResource
+from .models import UbicacionComisaria
 
 
 def index(request):
@@ -9,7 +9,12 @@ def index(request):
 
 
 def comisaria(request):
-    return render(request, 'comisaria.html')
+    ubicaciones = UbicacionComisaria.objects.all()
+    context = {
+        'ubs': ubicaciones,
+        'titulo': "Mapa de las comisarías"
+    }
+    return render(request, 'comisaria.html', context)
 
 
 def denuncia(request):
