@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}Denuncias{% endblock %}
+{% block css %}
+
+{% endblock %}
+{% block container %}
+<div>Denuncia</div>
+{% if form.errors %}
+   <div class="alert alert-warning" role="alert">
+      No se puedo guardar su denuncia
+</div>
+{% endif %}
+
+    <form action="{% url 'guardarDenuncia' %}" method="POST">
+    {% csrf_token %}
+    {% if mensaje %}
+    <div class="alert alert-success" role="alert">
+     denuncia guardada
+    </div>
+    {% endif %}
+    {{ form|crispy }}
+     <button type="reset" class="btn btn-primary"> Limpiar </button>
+    <button type="submit" class="btn btn-primary"> Denunciar </button>
+</form>
+
+
+{% endblock %}
+

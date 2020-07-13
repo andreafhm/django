@@ -35,4 +35,11 @@ class UbicacionComisaria(models.Model):
     COMISARIA = models.CharField(max_length=200, null=True, blank=True)
     TIPO = models.CharField(max_length=200, null=True, blank=True)
 
+class Denuncia(models.Model):
+    DNI = models.CharField(max_length=8,blank=True, null=True)
+    NOMBRE = models.CharField(max_length=200,blank=True, null=True)
+    APELLIDO = models.CharField(max_length=200,blank=True, null=True)
+    COMISARIA = models.CharField(max_length=200)
+    FECHA = models.DateField()
+    DESCRIPCION = models.TextField()
 # Create your models here.
