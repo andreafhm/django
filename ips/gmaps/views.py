@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from tablib import Dataset
 from .resources import PersonaResource
-from .models import UbicacionComisaria,Denuncia
+from .models import UbicacionComisaria, Denuncia
 from .forms import DenunciaForm
 from django.http import HttpRequest
+
 
 def index(request):
     return render(request, 'index.html')
@@ -13,24 +14,30 @@ def comisaria(request):
     ubicaciones = UbicacionComisaria.objects.all()
     context = {
         'ubs': ubicaciones,
-        'titulo': "Mapa de las comisarías"
+        'titulo': "Mapa de las comisarías",
     }
     return render(request, 'comisaria.html', context)
 
 
+def estadistica(request):
+    denuncias = Denuncia.objects.all()
+    context = {
+        'titulo': "Estadisticas",
+        'denuncias': denuncias
+    }
+    return render(request, 'estadistica.html', context)
+
+
 def denunciar(request):
-          denuncia = DenunciaForm()
-          return render(request,'Denuncias.html', {"form":denuncia})
+    denuncia = DenunciaForm()
+    return render(request, 'Denuncias.html', {"form": denuncia})
+
 
 def procesar_denuncia(request):
-         denuncia = DenunciaForm(request.POST)
-         if denuncia.is_valid():
-             denuncia.save()
-         return render(request,'Denuncias.html',{"form":denuncia,"mensaje":"ok"})
-
-
-def estadistica(request):
-    return render(request, 'home.html')
+    denuncia = DenunciaForm(request.POST)
+    if denuncia.is_valid():
+        denuncia.save()
+    return render(request, 'Denuncias.html', {"form": denuncia, "mensaje": "ok"})
 
 
 def importar(request):
@@ -47,4 +54,3 @@ def importar(request):
         if not result.has_errors():
             persona_resource.import_data(dataset, dry_run=False)  # Actually import now
     return render(request, 'importar.html')
-

@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Perú Seguro222{% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'gmaps/css/styles.css' %}">
+    <script async defer
+            src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js">
+    </script>
+    <script async defer
+            src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.js">
+    </script>
+    <script async defer
+            src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.bundle.js">
+    </script>
+    <script src="{% static 'gmaps/js/scripts.js' %}"></script>
+
+{% endblock %}
+
+{% block container %}
+    <h1>{{ titulo }}</h1>
+    <div class="container">
+
+        <canvas id="myChart" style="width: 50%;height: 50%;"></canvas>
+        <script>
+            var ctx = document.getElementById('myChart').getContext('2d');
+            //denuncias
+            let denuncias = [
+                {% for denuncia in denuncias %}
+                    {
+                        dni: '{{ denuncia.DNI }}',
+                    },
+                {% endfor %}
+            ];
+
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Aceptados', 'Falsos Postivos'],
+                    datasets: [{
+                        label: 'Estadistica falsos positivos',
+                        data: [denuncias.filter(value => value.dni !== "None").length, denuncias.filter(value => value.dni === "None").length],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(75, 192, 192, 1)',
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        </script>
+
+    </div>
+
+{% endblock %}

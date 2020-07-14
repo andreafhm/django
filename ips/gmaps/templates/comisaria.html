@@ -3,6 +3,17 @@
 {% block title %}Perú Seguro222{% endblock %}
 {% block css %}
     <link rel="stylesheet" type="text/css" href="{% static 'gmaps/css/styles.css' %}">
+    <script async defer
+            src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js">
+    </script>
+    <script async defer
+            src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.js">
+    </script>
+    <script async defer
+            src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.bundle.js">
+    </script>
+    <script src="{% static 'gmaps/js/scripts.js' %}"></script>
+
 {% endblock %}
 
 {% block container %}
@@ -19,6 +30,7 @@
             <div class="" id="nombreProvincia"></div>
             <div> Distrito:</div>
             <div class="" id="nombreDistrito"></div>
+            <div class="" id="demo"></div>
         </div>
 
     </div>
@@ -45,25 +57,44 @@
 
         var marker;   //variable del marcador
         var map;
+        var x = document.getElementById("demo");
 
+        function getLocation() {
+            const c = {
+                lng: -71.5248648384142,
+                lat: -16.4063923599152,
+                title: 'Ubicacion Actual 2'
+            };
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    c.lat = position.coords.latitude;
+                    c.lng = position.coords.longitude;
+                    let minDis = 100000;
+                    let comi = null;
+                    ubicaciones.forEach((v, i) => {
+                            let t = distance(position.coords.latitude, position.coords.longitude, v.ubicacion.split(',')[0], v.ubicacion.split(',')[1]);
+                            if (t < minDis) {
+                                minDis = t;
+                                comi = v;
+                            }
+                        }
+                    )
+                    x.innerHTML = "<br>COMISARIA MAS CERCANA: " + comi.nombre;
+                    map.setCenter(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
 
-        var coords = {
-            lng: -71.5248648384142,
-            lat: -16.4063923599152,
-            title: 'lugar'
-        };
-
+                });
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+            return c;
+        }
 
         //Funcion principal
         initMap = function () {
 
             //usamos la API para geolocalizar el usuario
-            //navigator.geolocation.getCurrentPosition(
-            // function (position){
-            //coords =  {
-            // lng: -71.5248648384142,
-            //lat: -16.4063923599152
-            //};
+
+            let coords = getLocation();
             setMapa(coords);  //pasamos las coordenadas al metodo para crear el mapa
             var infowindow = new google.maps.InfoWindow();
 
@@ -105,12 +136,6 @@
 
         }
 
-        function updateValues(xx) {
-            document.getElementById("nombreComisaria").textContent = xx.nombre;
-            document.getElementById("nombreDepartamento").textContent = xx.departamento;
-            document.getElementById("nombreProvincia").textContent = xx.provincia;
-            document.getElementById("nombreDistrito").textContent = xx.distrito;
-        }
 
         function setMapa(x) {
             //Se crea una nueva instancia del objeto mapa
@@ -118,32 +143,34 @@
                 {
                     zoom: 20,
                     center: new google.maps.LatLng(x.lat, x.lng),
-
                 });
+            /*
+                        //Creamos el marcador en el mapa con sus propiedades
+                        //para nuestro obetivo tenemos que poner el atributo draggable en true
+                        //position pondremos las mismas coordenas que obtuvimos en la geolocalización
+                          marker = new google.maps.Marker({
+                              map: map,
+                              draggable: true,
+                              animation: google.maps.Animation.DROP,
+                              position: new google.maps.LatLng(x.lat, x.lng),
+                              title: coords.title,
 
-            //Creamos el marcador en el mapa con sus propiedades
-            //para nuestro obetivo tenemos que poner el atributo draggable en true
-            //position pondremos las mismas coordenas que obtuvimos en la geolocalización
-            marker = new google.maps.Marker({
-                map: map,
-                draggable: true,
-                animation: google.maps.Animation.DROP,
-                position: new google.maps.LatLng(x.lat, x.lng),
-                title: coords.title,
+                          });
 
-            });
-            //agregamos un evento al marcador junto con la funcion callback al igual que el evento dragend que indica
-            //cuando el usuario a soltado el marcador
-            marker.addListener('click', toggleBounce);
+                        //agregamos un evento al marcador junto con la funcion callback al igual que el evento dragend que indica
+                        //cuando el usuario a soltado el marcador
+                        marker.addListener('click', toggleBounce);
 
-            marker.addListener('dragend', function (event) {
-                //escribimos las coordenadas de la posicion actual del marcador dentro del input #coords
-                document.getElementById("lati").value = this.getPosition().lat();
-                document.getElementById("long").value = this.getPosition().lng();
-            });
+                                    marker.addListener('dragend', function (event) {
+                                        //escribimos las coordenadas de la posicion actual del marcador dentro del input #coords
+                                        document.getElementById("lati").value = this.getPosition().lat();
+                                        document.getElementById("long").value = this.getPosition().lng();
+                                    });
+                                    //callback al hacer clic en el marcador lo que hace es quitar y poner la animacion BOUNCE
+                                    */
         }
 
-        //callback al hacer clic en el marcador lo que hace es quitar y poner la animacion BOUNCE
+
         function toggleBounce() {
             if (marker.getAnimation() !== null) {
                 marker.setAnimation(null);
@@ -152,13 +179,28 @@
             }
         }
 
+        function distance(lat1, lon1, lat2, lon2) {
+            var p = 0.017453292519943295;    // Math.PI / 180
+            var c = Math.cos;
+            var a = 0.5 - c((lat2 - lat1) * p) / 2 +
+                c(lat1 * p) * c(lat2 * p) *
+                (1 - c((lon2 - lon1) * p)) / 2;
 
+            return 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
+        }
+
+        function updateValues(xx) {
+            document.getElementById("nombreComisaria").textContent = xx.nombre;
+            document.getElementById("nombreDepartamento").textContent = xx.departamento;
+            document.getElementById("nombreProvincia").textContent = xx.provincia;
+            document.getElementById("nombreDistrito").textContent = xx.distrito;
+        }
     </script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSbKN8LhXAYQLMC9U-zueMqnnY40JqSg4&callback=initMap">
     </script>
     <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"> </script>
-<script src="{% static 'gmaps/js/scripts.js' %}"></script>-->
+-->
 {% endblock %}
 
