@@ -44,3 +44,4 @@ class Denuncia(models.Model):
     FECHA = models.DateField()
     DESCRIPCION = models.TextField()
 # Create your models here.
+

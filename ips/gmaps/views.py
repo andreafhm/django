@@ -14,7 +14,7 @@ def comisaria(request):
     ubicaciones = UbicacionComisaria.objects.all()
     context = {
         'ubs': ubicaciones,
-        'titulo': "Mapa de las comisarías",
+        'titulo': "Mapa",
     }
     return render(request, 'comisaria.html', context)
 

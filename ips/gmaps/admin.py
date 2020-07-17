@@ -1,10 +1,6 @@
 from django.contrib import admin
-from .models import Ubicacion,Denuncia
+from .models import Ubicacion 
 
 # Register your models here.
-# Registramos el nuevo modelo creado
-class DenunciaAdmin(admin.ModelAdmin):
-    list_display = ['DNI','NOMBRE','APELLIDO']
-
+# Registramos el nuevo modelo creado 
 admin.site.register(Ubicacion)
-admin.site.register(Denuncia,DenunciaAdmin)
