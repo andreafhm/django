@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Estadistica Denuncias{% endblock %}
+{% block container %}
+
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+  var a=0;
+  var b=0;
+  {% for p in estadistica %}
+      {%  if p.DNI|length == 8 %}
+             a++;
+
+      {% elif p.DNI|length == 0 %}
+             b++;
+
+       {% endif %}
+  {% endfor %}
+  document.write(a);
+  document.write(b);
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+
+  function drawChart() {
+
+    var data = google.visualization.arrayToDataTable([
+      ['Task', 'Amount'],
+      ['DNI',     a],
+      ['WithoutDNI',      b],
+    ]);
+
+    var options = {
+      title: 'Estadistica de denuncias registradas'
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+    chart.draw(data, options);
+  }
+</script>
+<div id="piechart" style="width: 900px; height: 500px;"></div>
+{% endblock %}
