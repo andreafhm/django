@@ -2,26 +2,27 @@
 {% block title %}Perú Seguro{% endblock %}
 {% block css %}
     <style type="text/css">
-        .card-img{
+        .card-img {
             width: 80%;
             height: 50vw;
             object-fit: cover;
         }
 
         .grid-container {
-          display: grid;
-          grid-template-columns: auto auto auto auto;
-          grid-gap: 15px;
-          background-color: #F2ECFF;
-          padding: 20px;
+            display: grid;
+            grid-template-columns: auto auto auto auto;
+            grid-gap: 15px;
+            background-color: #F2ECFF;
+            padding: 20px;
         }
 
         .grid-container > div {
-          padding: 5px 0;
-          font-size: 30px;
+            padding: 5px 0;
+            font-size: 30px;
         }
+
         .item1 {
-          grid-area: 1 / 2 / span 3 / span 4;
+            grid-area: 1 / 2 / span 3 / span 4;
         }
 
     </style>
@@ -29,41 +30,70 @@
 {% block container %}
 
     <div class="grid-container">
-      <div class="item1">
-          <div class="card bg-light text-white">
-              <img class="card-img" src="https://corprensa-la-prensa-prod.cdn.arcpublishing.com/resizer/K9SY9K8BDpTWka1AEU885YDRw2Y=/fit-in/1000x1000/smart/arc-anglerfish-arc2-prod-corprensa.s3.amazonaws.com/public/LJGKP7MEDZDPBCLNJ7FIYSVUUU.jpg" alt="Card image">
-              <div class="card-img-overlay">
-                <h5 class="card-title">INVESTIGACIÓN</h5>
-                <p class="card-text font-weight-bold" style="color:#fff;font-size:40px;">Perú nombra nuevo jefe policial en medio de escándalo de compras por Covid-19</p>
-                <p class="card-text" style="color:#fff;font-size:15px;">05 may 2020 - 02:34 PM</p>
-              </div>
-          </div>
-      </div>
+        <div class="item1">
+            <div class="card bg-light text-white">
+                <img class="card-img"
+                     src="https://corprensa-la-prensa-prod.cdn.arcpublishing.com/resizer/K9SY9K8BDpTWka1AEU885YDRw2Y=/fit-in/1000x1000/smart/arc-anglerfish-arc2-prod-corprensa.s3.amazonaws.com/public/LJGKP7MEDZDPBCLNJ7FIYSVUUU.jpg"
+                     alt="Card image">
+                <div class="card-img-overlay">
+                    <a target="_blank"
+                       href="https://www.prensa.com/mundo/peru-nombra-nuevo-jefe-policial-en-medio-de-escandalo-de-compras-por-covid-19/">
+                        <h5 class="card-title">INVESTIGACIÓN</h5>
+                        <p class="card-text font-weight-bold" style="color:#fff;font-size:40px;">Perú nombra nuevo jefe
+                            policial en medio de escándalo de compras por Covid-19</p>
+                        <p class="card-text" style="color:#fff;font-size:15px;">05 may 2020 - 02:34 PM</p>
+                    </a>
+                </div>
 
-      <div class="item2">
-          <div class="card" style="width: 20rem;">
-              <img class="card-img-top" src="https://e.rpp-noticias.io/small/2020/07/02/080408_965312.jpg" alt="Card image cap">
-              <div class="card-body">
-                <p class="card-text font-weight-bold" style="color:#08082E; font-size:17px;"> Lima: ¿Es posible vivir sin autos? Transporte alterno para un aire más limpio</p>
-              </div>
-          </div>
-      </div>
-      <div class="item3">
-          <div class="card" style="width: 20rem;">
-              <img class="card-img-top" src="https://e.rpp-noticias.io/medium/2020/07/15/043404_970678.jpg" alt="Card image cap">
-              <div class="card-body">
-                <p class="card-text font-weight-bold" style=" color:#08082E; font-size:17px;">Lima: Policía frustra asalto a agencia bancaria en Los Olivos y detiene a cuatro presuntos asaltantes</p>
-              </div>
-          </div>
-      </div>
-      <div class="item4">
-          <div class="card" style="width: 20rem;">
-              <img class="card-img-top" src="https://e.rpp-noticias.io/medium/2020/07/13/254925_969576.jpg" alt="Card image cap">
-              <div class="card-body">
-                <p class="card-text font-weight-bold" style="color:#08082E; font-size:17px;">Arequipa: PNP capturó a cuatro delincuentes que asaltaban a mano armada</p>
-              </div>
-          </div>
+            </div>
+        </div>
+
+        <div class="item2">
+            <div class="card" style="width: 20rem;">
+                <img class="card-img-top" src="https://e.rpp-noticias.io/small/2020/07/02/080408_965312.jpg"
+                     alt="Card image cap">
+                <div class="card-body">
+                    <a target="_blank"
+                       href="https://rpp.pe/peru/actualidad/es-posible-vivir-sin-autos-transporte-alterno-para-un-aire-mas-limpio-noticia-1246106">
+                        <p class="card-text font-weight-bold" style="color:#08082E; font-size:17px;"> Lima: ¿Es posible
+                            vivir sin autos? Transporte alterno para un aire más limpio</p>
+
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="item3">
+            <div class="card" style="width: 20rem;">
+                <img class="card-img-top" src="https://e.rpp-noticias.io/medium/2020/07/15/043404_970678.jpg"
+                     alt="Card image cap">
+                <div class="card-body">
+                    <a target="_blank"
+                       href="https://rpp.pe/lima/policiales-crimenes/policia-frustra-asalto-a-agencia-bancaria-en-los-olivos-y-detiene-a-cuatro-presuntos-asaltantes-noticia-1280350">
+                        <p class="card-text font-weight-bold" style=" color:#08082E; font-size:17px;">Lima: Policía
+                            frustra asalto a agencia bancaria en Los Olivos y detiene a cuatro presuntos asaltantes</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="item4">
+            <div class="card" style="width: 20rem;">
+                <img class="card-img-top" src="https://e.rpp-noticias.io/medium/2020/07/13/254925_969576.jpg"
+                     alt="Card image cap">
+                <div class="card-body">
+                    <a target="_blank"
+                       href="https://rpp.pe/lima/policiales-crimenes/san-juan-de-lurigancho-policia-nacional-capturo-a-cuatro-delincuentes-que-asaltaban-a-mano-armada-noticia-1279763">
+
+                        <p class="card-text font-weight-bold" style="color:#08082E; font-size:17px;">Arequipa: PNP
+                            capturó a
+                            cuatro delincuentes que asaltaban a mano armada</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
     </div>
 
-	
+
 {% endblock %}
