@@ -7,5 +7,6 @@ urlpatterns = [
     path('importar/', views.importar, name="importar"),
     path('denunciar/', views.denunciar, name="denunciar"),
     path('estadistica/', views.estadistica, name="estadistica"),
-    path('guardarDenuncia/', views.procesar_denuncia, name="guardarDenuncia"),
+    #path('guardarDenuncia/', views.procesar_denuncia, name="guardarDenuncia"),
+    path('estadisticaD/',views.denunciaEstadistica, name="estadisticaDenuncia"),
 ]

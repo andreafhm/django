@@ -27,17 +27,33 @@ def estadistica(request):
     }
     return render(request, 'estadistica.html', context)
 
+def denunciaEstadistica(request):
+    denunciaEstadistica = Denuncia.objects.all()
+    data = {
+        'estadistica':denunciaEstadistica
+    }
+    return render(request,'DenunciaEstadistica.html',data)
+
+#def denunciar(request):
+#    denuncia = DenunciaForm()
+#    return render(request, 'Denuncias.html', {"form": denuncia})
+
 
 def denunciar(request):
-    denuncia = DenunciaForm()
-    return render(request, 'Denuncias.html', {"form": denuncia})
-
-
-def procesar_denuncia(request):
+    data = {
+        'form':DenunciaForm()
+    }
     denuncia = DenunciaForm(request.POST)
     if denuncia.is_valid():
         denuncia.save()
-    return render(request, 'Denuncias.html', {"form": denuncia, "mensaje": "ok"})
+    return render(request,'Denuncias.html',data)
+
+
+#def procesar_denuncia(request):
+#    denuncia = DenunciaForm(request.POST)
+#    if denuncia.is_valid():
+#        denuncia.save()
+#    return render(request, 'Denuncias.html', {"form": denuncia, "mensaje": "ok"})
 
 
 def importar(request):
