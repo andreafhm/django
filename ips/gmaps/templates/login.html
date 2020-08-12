@@ -1,0 +1,22 @@
+{% extends 'baseSinNavBar.html' %}
+{% load static %}
+{% block title %}Perú Seguro{% endblock %}
+
+{% block container %}
+
+    <div style="padding-left:2%;padding-top: 2% ">
+        <h2>Iniciar sesión</h2>
+
+        <form method="POST">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <button type="submit">Login</button>
+        </form>
+
+        <hr/>
+        <a href="/register">Registrar usuario</a>
+    </div>
+{% endblock %}
+
+
+

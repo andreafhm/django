@@ -1,5 +1,5 @@
 from django import forms
-from .models import Denuncia
+from .models import Denuncia, UbicacionComisaria
 
 Delitos = [
     ('Robo', 'Robo'),
@@ -7,10 +7,10 @@ Delitos = [
     (' ', ' '),
 ]
 
+
 class DenunciaForm(forms.ModelForm):
     class Meta:
         model = Denuncia
         fields = '__all__'
         widgets = {'DELITO': forms.Select(choices=Delitos)}
         widgets = {'FECHA': forms.DateInput(attrs={'type': 'date'})}
-
